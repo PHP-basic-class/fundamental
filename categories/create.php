@@ -24,3 +24,13 @@
     </div>
 </body>
 </html>
+
+
+categories/
+    index.php
+    store.php 
+    edit.php 
+    update.php 
+    delete.php 
+
+controller/CategoryController.php

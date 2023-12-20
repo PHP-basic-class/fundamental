@@ -1,7 +1,7 @@
 <?php 
-require_once "../controller/ProductController.php";
-$controller = new ProductController();
-$products = $controller->index();
+require_once "../controller/RecycleBinController.php";
+$controller = new RecycleBinController();
+$products = $controller->products();
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ $products = $controller->index();
     <div class="flex justify-between my-5">
         <h1>Product Table</h1>
         <div class="mr-10">
-            <a class="bg-black rounded-md shadow-xl py-2 px-5 text-white" href="recycle_bin/products.php">Recycle Bin</a>
+            <a class="bg-black rounded-md shadow-xl py-2 px-5 text-white" href="../products/">Back</a>
             <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="products/create.php">ADD +</a>
         </div>
     </div>
@@ -35,6 +35,9 @@ $products = $controller->index();
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Category
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Deleted At
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Actions
@@ -57,7 +60,10 @@ $products = $controller->index();
                         <?php echo $product->category ?>
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <a class="px-5 py-2 rounded-md bg-blue-600 text-white" href="/products/edit.php?id=<?php echo $product->id;?>">edit</a>
+                        <?php echo $product->deleted_at ?>
+                    </td>
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <a class="px-5 py-2 rounded-md bg-blue-600 text-white" href="/products/edit.php?id=<?php echo $product->id;?>">restore</a>
                         <a class="px-5 py-2 rounded-md bg-red-600 text-white" href="/products/destroy.php?id=<?php echo $product->id;?>">delete</a>
                     </td>
                 </tr>
