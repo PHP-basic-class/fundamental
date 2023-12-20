@@ -4,7 +4,7 @@ class ProductController extends DB
 {
     public function index ()
     {
-        $statement = $this->pdo->query("select * from products");
+        $statement = $this->pdo->query("SELECT * FROM `products` WHERE `deleted_at` IS NULL");
         $products = $statement->fetchAll(PDO::FETCH_OBJ); 
         return $products;
     }
@@ -14,13 +14,14 @@ class ProductController extends DB
         try {
             $statement = $this->pdo->prepare("
                 insert into products
-                    (name, price, stock, category, created_at, updated_at)
+                    (name, price, stock, description, category, created_at, updated_at)
                 values 
-                    (:name, :price, :stock, :category, now(), now());
+                    (:name, :price, :stock, :description, :category, now(), now());
             "); 
             $statement->bindParam(":name", $request["name"]);
             $statement->bindParam(":price", $request["price"]);
             $statement->bindParam(":stock", $request["stock"]);
+            $statement->bindParam(":description", $request["description"]);
             $statement->bindParam(":category", $request["category"]);
 
             if ($statement->execute())
@@ -61,6 +62,7 @@ class ProductController extends DB
                         name = :name, 
                         price = :price, 
                         stock = :stock, 
+                        description = :description,
                         category = :category,
                         created_at = :created_at,
                         updated_at = now()
@@ -70,6 +72,7 @@ class ProductController extends DB
             $statement->bindParam(":name", $request["name"]);
             $statement->bindParam(":price", $request["price"]);
             $statement->bindParam(":stock", $request["stock"]);
+            $statement->bindParam(":description", $request["description"]);
             $statement->bindParam(":category", $request["category"]);
             $statement->bindParam(":created_at", $request["created_at"]);
 
@@ -87,7 +90,13 @@ class ProductController extends DB
     public function destroy ($id)
     {
         try {
-            $statement = $this->pdo->prepare("delete from products where id = :id"); 
+            $statement = $this->pdo->prepare("
+                update 
+                    products
+                set 
+                    deleted_at = now()
+                where id = :id;
+            "); 
             $statement->bindParam(":id", $id);
             if ($statement->execute())
             {
