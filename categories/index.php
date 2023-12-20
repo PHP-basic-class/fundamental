@@ -9,6 +9,10 @@
 </head>
 
 <body class=" bg-slate-500">
+    <!-- 
+        to work alert need to parse type data after create or delete or update
+        eg. header("Location:http://localhost:3000/categories/index.php?message=$message&category_name=$name&type=store");
+    -->
     <?php if (isset($_GET['type'])) : ?>
         <?php if ($_GET['type'] == 'store') : ?>
             <div class=" flex justify-center">
@@ -84,7 +88,7 @@
                     Back
                 </span> </a>
         </div>
-        <h2 class=" text-center font-bold text-2xl p-3 text-slate-200 me-auto">Product Table<h2>
+        <h2 class=" text-center font-bold text-2xl p-3 text-slate-200 me-auto">Category Table<h2>
     </div>
     <div class="relative overflow-x-auto sm:rounded-lg flex  justify-center mt-3">
         <table class="w-[1100px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -94,18 +98,9 @@
                         NO
                     </th>
                     <th scope="col" class="px-6 py-4">
-                        Product name
+                        Category name
                     </th>
                     <th scope="col" class="px-6 py-4">
-                        Price
-                    </th>
-                    <th scope="col" class="px-6 py-4 text-center">
-                        Stock
-                    </th>
-                    <th scope="col" class="px-6 py-4 text-center">
-                        Category
-                    </th>
-                    <th scope="col" class="px-6 py-4 text-center">
                         Created_at
                     </th>
                     <th scope="col" class="px-6 py-4 text-center">
@@ -120,64 +115,42 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                require_once '../controller/ProductController.php';
-
-                $controller = new ProductController();
-                $products = $controller->index();
-
-                if ($products) {
-                    $no = 0;
-                    foreach ($products as $product) {
-                ?>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <?= ++$no ?>
-                            </th>
-                            <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <?= $product->name; ?>
-                            </th>
-                            <td class="px-6 py-2">
-                                <?= $product->price; ?> ks
-                            </td>
-                            <td class="px-6 py-2 text-center">
-                                <?= $product->stock; ?>
-                            </td>
-                            <td class="px-6 py-2 text-center">
-                                <?= $product->category; ?>
-                            </td>
-                            <td class="px-6 py-2 text-center">
-                                <?= $product->created_at; ?>
-                            </td>
-                            <td class="px-6 py-2 text-center">
-                                <?= $product->updated_at; ?>
-                            </td>
-                            <td class="px-6 py-2 text-center">
-                                <a href="./edit.php?id=<?= $product->id; ?>" type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Edit</a>
-                                <a href="./destroy.php?id=<?= $product->id; ?>&name=<?= $product->name; ?>" type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-4 py-2 text-center me-2 mb-2">Delete</a>
-                            </td>
-                            <td class="px-3 py-2">
-
-                            </td>
-                        </tr>
-                    <?php
-                    }
-                } else {
-                    ?>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        1
+                    </th>
+                    <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Laptop
+                    </th>
+                    <td class="px-6 py-2">
+                        created time
+                    </td>
+                    <td class="px-6 py-2 text-center">
+                        upated time
+                    <td class="px-6 py-2 text-center">
+                        <a href="./edit.php" type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Edit</a>
+                        <a href="./destroy.php" type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-4 py-2 text-center me-2 mb-2">Delete</a>
+                    </td>
+                    <td class="px-3 py-2">
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
+
+    <!-- 
+        check category have or not using if statement
+    -->
     <div class=" flex justify-center">
         <div class="flex items-center justify-center w-[500px] p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
             <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
             </svg>
             <div>
-                <span class="font-medium">No Products Found! Create One!</span>
+                <span class="font-medium">No Category Found! Create One!</span>
             </div>
         </div>
     </div>
-<?php } ?>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 

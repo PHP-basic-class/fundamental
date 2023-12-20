@@ -1,99 +1,98 @@
-<?php 
-require_once "../helper/database.php";
+<?php
+
+require_once '../helper/database.php';
+
 class ProductController extends DB
 {
-    public function index ()
-    {
-        $statement = $this->pdo->query("select * from products");
-        $products = $statement->fetchAll(PDO::FETCH_OBJ); 
-        return $products;
-    }
-
-    public function store ($request)
+    # Get All Products
+    public function index()
     {
         try {
-            $statement = $this->pdo->prepare("
-                insert into products
-                    (name, price, stock, category, created_at, updated_at)
-                values 
-                    (:name, :price, :stock, :category, now(), now());
-            "); 
-            $statement->bindParam(":name", $request["name"]);
-            $statement->bindParam(":price", $request["price"]);
-            $statement->bindParam(":stock", $request["stock"]);
-            $statement->bindParam(":category", $request["category"]);
-
-            if ($statement->execute())
-            {
-                header("Location: http://127.0.0.1:8000/products");
+            $stmt = $this->pdo->query("SELECT * FROM products");
+            $products = $stmt->fetchAll(PDO::FETCH_OBJ);
+            if ($products) {
+                return $products;
             } else {
-                throw new Exception("Error while creating a new product!");
+                throw new Exception('Error on getting all products!');
             }
         } catch (Exception $e) {
-            echo $e->getMessage();
+            $e->getMessage();
         }
     }
 
-    public function edit ($id)
+    # Store Product
+    public function store($request)
     {
         try {
-            $db = new DB();
-            $statement = $db->pdo->prepare("select * from products where id = :id");
-            $statement->bindParam(":id", $id);
-            if ($statement->execute()) {
-                $product = $statement->fetch(PDO::FETCH_OBJ); 
+            $stmt = $this->pdo->prepare("INSERT INTO products (name, price, stock , category , created_at, updated_at) VALUES (:name, :price , :stock, :category, now() , now())");
+            $stmt->bindParam(':name', $request['product_name']);
+            $stmt->bindParam(':price', $request['product_price']);
+            $stmt->bindParam(':stock', $request['product_amount']);
+            $stmt->bindParam(':category', $request['category']);
+            if ($stmt->execute()) {
+                $message = "Successfully created a new product!";
+                $name = $request['product_name'];
+                header("Location:http://localhost:3000/products/index.php?message=$message&product_name=$name&type=store");
+            } else {
+                throw new Exception('Error on product creating!');
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+    }
+
+    # Edit Product
+    public function edit($id)
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM products WHERE id = (:id)");
+            $stmt->bindParam(':id', $id);
+            if ($stmt->execute()) {
+                $product = $stmt->fetch(PDO::FETCH_OBJ);
                 return $product;
             } else {
-                throw new Exception("Error!");
+                throw new Exception('Error on show edit page!');
             }
         } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
 
-    public function update ($request, $id)
+    # Update Product
+    public function update($request)
     {
         try {
-            $db = new DB();
-            $statement = $db->pdo->prepare("
-                update products 
-                    set 
-                        name = :name, 
-                        price = :price, 
-                        stock = :stock, 
-                        category = :category,
-                        created_at = :created_at,
-                        updated_at = now()
-                    where id = :id
-            "); 
-            $statement->bindParam(":id", $id);
-            $statement->bindParam(":name", $request["name"]);
-            $statement->bindParam(":price", $request["price"]);
-            $statement->bindParam(":stock", $request["stock"]);
-            $statement->bindParam(":category", $request["category"]);
-            $statement->bindParam(":created_at", $request["created_at"]);
-
-            if ($statement->execute())
-            {
-                header("Location: http://127.0.0.1:8000/products");
+            $stmt = $this->pdo->prepare("UPDATE products SET name = :name , price = :price , stock = :stock , category = :category , created_at = :created_at , updated_at = now() WHERE id = :id");
+            $stmt->bindParam(':id', $request['id']);
+            $stmt->bindParam(':name', $request['product_name']);
+            $stmt->bindParam(':price', $request['product_price']);
+            $stmt->bindParam(':stock', $request['product_amount']);
+            $stmt->bindParam(':category', $request['category']);
+            $stmt->bindParam(':created_at', $request['created_at']);
+            if ($stmt->execute()) {
+                $message = "Successfully updated a product!";
+                $name =  $request['product_name'];
+                header("Location:http://localhost:3000/products/index.php?message=$message&product_name=$name&type=update");
             } else {
-                throw new Exception("Error while updating product!");
+                throw new Exception('Error on product updating!');
             }
         } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
 
-    public function destroy ($id)
+    # Destroy Product
+    public function destroy($id)
     {
         try {
-            $statement = $this->pdo->prepare("delete from products where id = :id"); 
-            $statement->bindParam(":id", $id);
-            if ($statement->execute())
-            {
-                header("Location: http://127.0.0.1:8000/products");
+            $stmt = $this->pdo->prepare("DELETE FROM products WHERE id=(:id)");
+            $stmt->bindParam(':id', $id);
+            if ($stmt->execute()) {
+                $message = "Successfully deleted a product!";
+                $name = $_GET['name'];
+                header("Location:http://localhost:3000/products/index.php?product_name=$name&message=$message&type=delete");
             } else {
-                throw new Exception("Error while creating a new product!");
+                throw new Exception('Error on product deleting!');
             }
         } catch (Exception $e) {
             echo $e->getMessage();
