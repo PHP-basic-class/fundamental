@@ -1,32 +1,29 @@
 <?php 
 require_once "../helper/database.php";
-class ProductController extends DB
+class CategoryController extends DB
 {
     public function index ()
     {
-        return $this->pdo->query("SELECT * FROM `products` WHERE `deleted_at` IS NULL")->fetchAll(PDO::FETCH_OBJ);
+        return $this->pdo->query("SELECT * FROM `categories` WHERE `deleted_at` IS NULL")->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function store ($request)
     {
         try {
             $statement = $this->pdo->prepare("
-                insert into products
-                    (name, price, stock, description, category, created_at, updated_at)
+                insert into categories
+                    (name,created_at,updated_at)
                 values 
-                    (:name, :price, :stock, :description, :category, now(), now());
+                    (:name,now(), now());
             "); 
             $statement->bindParam(":name", $request["name"]);
-            $statement->bindParam(":price", $request["price"]);
-            $statement->bindParam(":stock", $request["stock"]);
-            $statement->bindParam(":description", $request["description"]);
-            $statement->bindParam(":category", $request["category"]);
+        
 
             if ($statement->execute())
             {
             header("Location: ./");
             } else {
-                throw new Exception("Error while creating a new product!");
+                throw new Exception("Error while creating a new category!");
             }
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -37,7 +34,7 @@ class ProductController extends DB
     {
         try {
             $db = new DB();
-            $statement = $db->pdo->prepare("select * from products where id = :id");
+            $statement = $db->pdo->prepare("select * from categories where id = :id");
             $statement->bindParam(":id", $id);
             if ($statement->execute()) {
                 $product = $statement->fetch(PDO::FETCH_OBJ); 
@@ -55,30 +52,21 @@ class ProductController extends DB
         try {
             $db = new DB();
             $statement = $db->pdo->prepare("
-                update products 
+                update categories 
                     set 
                         name = :name, 
-                        price = :price, 
-                        stock = :stock, 
-                        description = :description,
-                        category = :category,
-                        created_at = :created_at,
                         updated_at = now()
                     where id = :id
             "); 
             $statement->bindParam(":id", $id);
             $statement->bindParam(":name", $request["name"]);
-            $statement->bindParam(":price", $request["price"]);
-            $statement->bindParam(":stock", $request["stock"]);
-            $statement->bindParam(":description", $request["description"]);
-            $statement->bindParam(":category", $request["category"]);
-            $statement->bindParam(":created_at", $request["created_at"]);
+           
 
             if ($statement->execute())
             {
-                header("Location: ../products");
+                header("Location: ../categories/");
             } else {
-                throw new Exception("Error while updating product!");
+                throw new Exception("Error while updating category!");
             }
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -90,7 +78,7 @@ class ProductController extends DB
         try {
             $statement = $this->pdo->prepare("
                 update 
-                    products
+                    categories
                 set 
                     deleted_at = now()
                 where id = :id;
@@ -98,9 +86,9 @@ class ProductController extends DB
             $statement->bindParam(":id", $id);
             if ($statement->execute())
             {
-                header("Location: ./");
+                header("Location: ../categories/");
             } else {
-                throw new Exception("Error while creating a new product!");
+                throw new Exception("Error while creating a new category!");
             }
         } catch (Exception $e) {
             echo $e->getMessage();

@@ -15,7 +15,7 @@ $product = $controller->edit($_GET["id"]);
 </head>
 <body>
     <div class="w-[40%] mx-auto shadow-lg my-12 py-5">
-        <h1 class="text-center">Create Product</h1>
+        <h1 class="text-center">Edit Product</h1>
         <form class="w-[90%] mx-auto" action="update.php?id=<?php echo $product->id; ?>" method="POST">
             <div class="my-3">
                 <label for="name">Name</label>

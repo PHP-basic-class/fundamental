@@ -1,7 +1,7 @@
 <?php 
 require_once "../controller/RecycleBinController.php";
 $controller = new RecycleBinController();
-$products = $controller->products();
+$categories = $controller->categories();
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ $products = $controller->products();
 <div class="p-3 flex items-center justify-between bg-white shadow-md">
         <p class="text-lg sm:text-xl text-blue-700 font-bold">Recycle List</p>
        
-        <a href="../products/" class="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4   rounded">
+        <a href="../categories/" class="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4   rounded">
             Back
         </a>
     </div>
@@ -25,17 +25,9 @@ $products = $controller->products();
             <thead class="text-xs sm:text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Product name
+                        Category name
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        Price
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Stock
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Category
-                    </th>
+                 
                     <th scope="col" class="px-6 py-3">
                         Created at
                     </th>
@@ -48,20 +40,12 @@ $products = $controller->products();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($products as $product) : ?>
+                <?php foreach ($categories as $product) : ?>
                     <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <?php echo $product->name; ?>
                         </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <?php echo $product->price; ?>
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <?php echo $product->stock; ?>
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <?php echo $product->category; ?>
-                        </td>
+                     
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <?php echo $product->created_at; ?>
                         </td>
@@ -69,7 +53,7 @@ $products = $controller->products();
                             <?php echo $product->updated_at; ?>
                         </td>
                         <td class="px-6 py-4">
-                        <a href="restore_product.php?id=<?php echo $product->id; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Restore</a>
+                        <a href="restore_category.php?id=<?php echo $product->id; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Restore</a>
                         |
                         <a href="p_delete_category.php?id=<?php echo $product->id; ?>" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
                         </td>
