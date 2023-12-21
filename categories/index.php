@@ -16,7 +16,7 @@
     <?php if (isset($_GET['type'])) : ?>
         <?php if ($_GET['type'] == 'store') : ?>
             <div class=" flex justify-center">
-                <div id="alert-border-3" class="p-4 w-[1100px] flex items-center mt-1 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
+                <div id="alert-border-3" class="p-4 w-[1200px] flex items-center mt-1 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
                     <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                     </svg>
@@ -39,7 +39,7 @@
         <?php endif; ?>
         <?php if ($_GET['type'] == 'delete') : ?>
             <div class=" justify-center flex">
-                <div id="alert-border-2" class="w-[1100px] flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800" role="alert">
+                <div id="alert-border-2" class="w-[1200px] flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800" role="alert">
                     <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                     </svg>
@@ -60,7 +60,7 @@
         <?php endif; ?>
         <?php if ($_GET['type'] == 'update') : ?>
             <div class=" flex justify-center">
-                <div id="alert-border-4" class="w-[1100px] flex items-center p-4 mb-4 text-yellow-800 border-t-4 border-yellow-300 bg-yellow-50 dark:text-yellow-300 dark:bg-gray-800 dark:border-yellow-800" role="alert">
+                <div id="alert-border-4" class="w-[1200px] flex items-center p-4 mb-4 text-yellow-800 border-t-4 border-yellow-300 bg-yellow-50 dark:text-yellow-300 dark:bg-gray-800 dark:border-yellow-800" role="alert">
                     <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                     </svg>
@@ -80,7 +80,7 @@
             </div>
         <?php endif; ?>
     <?php endif; ?>
-    <div class="flex justify-center w-[1100px] mx-auto">
+    <div class="flex justify-center w-[1200px] mx-auto">
         <div class="me-auto mt-2">
             <a href="../index.php" class="text-4xl font-bold text-gray-800 flex items-center">
                 <span>&#8592;</span>
@@ -91,7 +91,7 @@
         <h2 class=" text-center font-bold text-2xl p-3 text-slate-200 me-auto">Category Table<h2>
     </div>
     <div class="relative overflow-x-auto sm:rounded-lg flex  justify-center mt-3">
-        <table class="w-[1100px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <table class="w-[1200px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-4">
