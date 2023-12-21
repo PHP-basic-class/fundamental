@@ -4,8 +4,8 @@ class DB
 {
     public $host = "localhost";
     public $dbname = "first";
-    public $user = "root";
-    // public $password = "admin";
+    public $user = "nineproblem";
+    public $password = "smile";
     public $port = 3306;
     public $pdo;
     public function __construct()
