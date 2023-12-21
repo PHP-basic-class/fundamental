@@ -147,12 +147,10 @@
                                 <?= $product->category; ?>
                             </td>
                             <td class="px-6 py-2 text-center">
-                                <?= $product->created_at; ?>
-                                00:00:00
+                                <?= $product->created_at; ?>                             
                             </td>
                             <td class="px-6 py-2 text-center">
                                 <?= $product->updated_at; ?>
-                                00:00:00
                             </td>
                             <td class="px-6 py-2 text-center">
                                 <a href="./edit.php?id=<?= $product->id; ?>" type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Edit</a>
