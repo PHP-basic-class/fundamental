@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="mx-auto w-[40%] text-center my-10">
-        <a href="categories/create.php" class="px-10 py-3 bg-green-700 text-white mx-5">Category</a>
-        <a href="products/index.php" class="px-10 py-3 bg-green-700 text-white mx-5">Products</a>
+        <a href="./categories/" class="px-10 py-3 bg-green-700 text-white mx-5">Category</a>
+        <a href="./products/" class="px-10 py-3 bg-green-700 text-white mx-5">Products</a>
     </div>
 </body>
 </html>
