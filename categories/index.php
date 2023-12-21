@@ -115,29 +115,40 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        1
-                    </th>
-                    <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Laptop
-                    </th>
-                    <td class="px-6 py-2">
-                        created time
-                    </td>
-                    <td class="px-6 py-2 text-center">
-                        upated time
-                    <td class="px-6 py-2 text-center">
-                        <a href="./edit.php" type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Edit</a>
-                        <a href="./destroy.php" type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-4 py-2 text-center me-2 mb-2">Delete</a>
-                    </td>
-                    <td class="px-3 py-2">
-                    </td>
-                </tr>
+                <?php
+                require_once '../controller/CategoryController.php';
+
+                $controller = new CategoryController();
+                $categories = $controller->index();
+                if ($categories) {
+                    $no = 0;
+                    foreach ($categories as $category) {
+                ?>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <?= ++$no ?>
+                            </th>
+                            <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <?= $category->name ?>
+                            </th>
+                            <td class="px-6 py-2">
+                                <?= $category->created_at ?>
+                            </td>
+                            <td class="px-6 py-2 text-center">
+                                <?= $category->updated_at ?>
+                            <td class="px-6 py-2 text-center">
+                                <a href="./edit.php" type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Edit</a>
+                                <a href="./destroy.php" type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-4 py-2 text-center me-2 mb-2">Delete</a>
+                            </td>
+                            <td class="px-3 py-2">
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                } else { ?>
             </tbody>
         </table>
     </div>
-
     <!-- 
         check category have or not using if statement
     -->
@@ -151,6 +162,7 @@
             </div>
         </div>
     </div>
+<?php } ?>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 
