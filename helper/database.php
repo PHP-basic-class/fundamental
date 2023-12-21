@@ -2,10 +2,10 @@
 
 class DB 
 {
-    public $host = "127.0.0.1";
+    public $host = "localhost";
     public $dbname = "first";
     public $user = "root";
-    public $password = "admin";
+    public $password = "root12345";
     public $port = 3306;
     public $pdo;
     public function __construct()

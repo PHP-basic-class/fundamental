@@ -26,7 +26,7 @@ class ProductController extends DB
 
             if ($statement->execute())
             {
-                header("Location: http://127.0.0.1:8000/products");
+                header("Location: http://localhost:8000/products");
             } else {
                 throw new Exception("Error while creating a new product!");
             }
@@ -78,7 +78,7 @@ class ProductController extends DB
 
             if ($statement->execute())
             {
-                header("Location: http://127.0.0.1:8000/products");
+                header("Location: http://localhost:8000/products/");
             } else {
                 throw new Exception("Error while updating product!");
             }
@@ -100,7 +100,7 @@ class ProductController extends DB
             $statement->bindParam(":id", $id);
             if ($statement->execute())
             {
-                header("Location: http://127.0.0.1:8000/products");
+                header("Location: http://localhost:8000/products/");
             } else {
                 throw new Exception("Error while creating a new product!");
             }
