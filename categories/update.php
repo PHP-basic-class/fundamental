@@ -1,6 +1,6 @@
 <?php
-require_once "../controller/ProductController.php";
+require_once "../controller/CategoryController.php";
 
 # Update Product
-$controller = new ProductController();
+$controller = new CategoryController();
 $controller->update($_POST);

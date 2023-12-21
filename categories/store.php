@@ -1,5 +1,5 @@
 <?php
-require_once "../controller/ProductController.php";
+require_once "../controller/CategoryController.php";
 
 #Store Products
 $controller = new CategoryController();
