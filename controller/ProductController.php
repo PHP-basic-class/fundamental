@@ -25,6 +25,7 @@ class ProductController extends DB
     {
         try {
             $stmt = $this->pdo->prepare("INSERT INTO products (name, price, stock , category , created_at, updated_at) VALUES (:name, :price , :stock, :category, now() , now())");
+            $products = $stmt->fetchAll(PDO::FETCH_OBJ);
             $stmt->bindParam(':name', $request['product_name']);
             $stmt->bindParam(':price', $request['product_price']);
             $stmt->bindParam(':stock', $request['product_amount']);
@@ -93,6 +94,40 @@ class ProductController extends DB
                 header("Location:http://localhost:3000/products/index.php?product_name=$name&message=$message&type=delete");
             } else {
                 throw new Exception('Error on product deleting!');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+}
+#Categories
+class CategoryController extends DB{
+    # store categories
+    public function store($request){
+        try{
+            $stmt = $this->pdo->prepare("INSERT INTO categories (name, created_at, updated_at) VALUES (:name, now() , now())");
+            $categories = $stmt->fetch(PDO::FETCH_OBJ);
+            $stmt->bindParam(':name', $request['product_name']);
+            if ($stmt->execute()) {
+                header("location: $this->host");              
+            } else {
+                throw new Exception('Error on category creating!');
+            }
+        }catch(Exception $e){
+            echo $e;
+        }
+    }
+    #Edit Category
+    public function edit($id)
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM categories WHERE id = (:id)");
+            $stmt->bindParam(':id', $id);
+            if ($stmt->execute()) {
+                $category = $stmt->fetch(PDO::FETCH_OBJ);
+                return $category;
+            } else {
+                throw new Exception('Error on show edit page!');
             }
         } catch (Exception $e) {
             echo $e->getMessage();
