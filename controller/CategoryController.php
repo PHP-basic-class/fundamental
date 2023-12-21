@@ -68,4 +68,21 @@ class CategoryController extends DB
             echo $e->getMessage();
         }
     }
+     # Destroy Product
+     public function destroy($id)
+     {
+         try {
+             $stmt = $this->pdo->prepare("DELETE FROM categories WHERE id=:id");
+             $stmt->bindParam(':id', $id);
+             if ($stmt->execute()) {
+                 $message = "Successfully deleted a category!";
+                 $name = $_GET['name'];
+                 header("Location:http://localhost:8000/categories/index.php?category_name=$name&message=$message&type=delete");
+             } else {
+                 throw new Exception('Error on category deleting!');
+             }
+         } catch (Exception $e) {
+             echo $e->getMessage();
+         }
+     }
 }
