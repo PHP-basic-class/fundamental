@@ -9,3 +9,10 @@ create table products (
     updated_at datetime not null, 
     deleted_at datetime
 );
+
+create table category (
+    id int unsigned primary key not null auto_increment,
+    name varchar (100) not null,
+    created_at datetime not null,
+    updated_at datetime not null
+);
