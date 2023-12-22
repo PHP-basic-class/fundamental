@@ -4,7 +4,7 @@ class CategoryController extends CDB
 {
     public function categoryIndex ()
     {
-        $statement = $this->pdo->query("select * from category;");
+        $statement = $this->pdo->query("select * from categories;");
         $products = $statement->fetchAll(PDO::FETCH_OBJ);
         return $products;
     }
@@ -13,7 +13,7 @@ class CategoryController extends CDB
     {
         try {
             $statement = $this->pdo->prepare("
-                insert into category
+                insert into categories
                     (name, created_at, updated_at)
                 values 
                     (:name, now(), now());
@@ -24,7 +24,7 @@ class CategoryController extends CDB
             {
                 header("Location: http://localhost:8000/categories");
             } else {
-                throw new Exception("Error while creating a new product!");
+                throw new Exception("Error while creating a new category!");
             }
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -34,8 +34,7 @@ class CategoryController extends CDB
     public function categoryEdit ($id)
     {
         try {
-            $db = new CDB();
-            $statement = $db->pdo->prepare("select * from products where id = :id");
+            $statement = $this->pdo->prepare("select * from categories where id = :id");
             $statement->bindParam(":id", $id);
             if ($statement->execute()) {
                 $product = $statement->fetch(PDO::FETCH_OBJ); 
@@ -51,9 +50,8 @@ class CategoryController extends CDB
     public function categoryUpdate ($request, $id)
     {
         try {
-            $db = new DB();
-            $statement = $db->pdo->prepare("
-                update category 
+            $statement = $this->pdo->prepare("
+                update categories
                     set 
                         name = :name, 
                         created_at = :created_at,
@@ -68,7 +66,7 @@ class CategoryController extends CDB
             {
                 header("Location: http://localhost:8000/categories");
             } else {
-                throw new Exception("Error while updating product!");
+                throw new Exception("Error while updating category!");
             }
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -79,14 +77,14 @@ class CategoryController extends CDB
     {
         try {
             $statement = $this->pdo->prepare("
-                delete from category where id =:id;
+                delete from categories where id =:id;
             "); 
             $statement->bindParam(":id", $id);
             if ($statement->execute())
             {
                 header("Location: http://localhost:8000/categories");
             } else {
-                throw new Exception("Error while creating a new product!");
+                throw new Exception("Error while creating a new category!");
             }
         } catch (Exception $e) {
             echo $e->getMessage();

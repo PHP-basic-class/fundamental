@@ -21,6 +21,9 @@ $product = $controller->categoryEdit($_GET["id"]);
                 <label for="name" class="text-sm text-white">CATEGORY NAME</label>
                 <input required value="<?php echo $product->name;?>" type="text" name="name" class="w-full border-2 rounded-md border-amber-500 px-3 py-1">
             </div>
+            <div class="">
+                <input required value="<?php echo $product->created_at;?>" type="hidden" name="created_at" class="w-full border-2 rounded-md border-amber-500 px-3 py-1">
+            </div>
             <button class="w-full py-1 bg-amber-400 text-gray-800 my-3 rounded-md hover:bg-amber-300 btn-save">Save</button>
             <div class="my-2 py-1 w-full bg-gray-800 text-white rounded-md rounded-md hover:bg-gray-600 text-center cursor-pointer">
                 <a href="./index.php" class="w-full">Back</a>
