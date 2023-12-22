@@ -1,15 +1,15 @@
-<?php 
+<?php
 require_once "../helper/database.php";
 class CategoryController extends DB
 {
-    public function index ()
+    public function index()
     {
         $statement = $this->pdo->query("SELECT * FROM `categories` WHERE `deleted_at` IS NULL");
-        $categories = $statement->fetchAll(PDO::FETCH_OBJ); 
+        $categories = $statement->fetchAll(PDO::FETCH_OBJ);
         return $categories;
     }
 
-    public function store ($request)
+    public function store($request)
     {
         try {
             $statement = $this->pdo->prepare("
@@ -17,11 +17,10 @@ class CategoryController extends DB
                     (name, created_at, updated_at)
                 values 
                     (:name, now(), now());
-            "); 
+            ");
             $statement->bindParam(":name", $request["name"]);
 
-            if ($statement->execute())
-            {
+            if ($statement->execute()) {
                 header("Location: http://localhost:8000/categories");
             } else {
                 throw new Exception("Error while creating a new category!");
@@ -31,7 +30,16 @@ class CategoryController extends DB
         }
     }
 
-    public function destroy ($id)
+    public function edit ($id)
+    {
+        $statement = $this->pdo->prepare("select * from categories where id = :id");
+        $statement->bindParam(":id", $id);
+        if ($statement->execute()) {
+            $category = $statement->fetch(PDO::FETCH_OBJ); 
+            return $category;}
+    }
+
+    public function destroy($id)
     {
         try {
             $statement = $this->pdo->prepare("
@@ -40,10 +48,9 @@ class CategoryController extends DB
                 set 
                     deleted_at = now()
                 where id = :id;
-            "); 
+            ");
             $statement->bindParam(":id", $id);
-            if ($statement->execute())
-            {
+            if ($statement->execute()) {
                 header("Location: http://localhost:8000/categories/");
             } else {
                 throw new Exception("Error while deleting a category!");
@@ -52,4 +59,28 @@ class CategoryController extends DB
             echo $e->getMessage();
         }
     }
+
+    public function update ($request, $id)
+    {
+        $statement = $this->pdo->prepare("
+        update categories 
+            set 
+                name = :name, 
+                created_at = :created_at,
+                updated_at = now()
+            where id = :id
+    "); 
+    $statement->bindParam(":id", $id);
+    $statement->bindParam(":name", $request["name"]);
+    
+
+    if ($statement->execute())
+    {
+        header("Location: http://localhost:8000/categories/");
+    } else {
+        throw new Exception("Error while updating categories!");
+    }
+
+    }
+
 }
