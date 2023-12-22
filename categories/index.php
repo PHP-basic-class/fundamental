@@ -1,8 +1,10 @@
-<?php
-    require_once "../controller/CategoryController.php";
-    $controller = new CategoryController();
-    $categories = $controller->index();
+<?php 
+require_once "../controller/CategoryController.php";
+$controller = new CategoryController();
+$products = $controller->categoryIndex();
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,64 +12,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
-<body>
-    <div class="flex justify-between py-4">
-        <h1 class="text-lg ml-6 font-bold italic font-lg">Category Table</h1>
-        <div>
-            <a href="../categories/create.php" class="bg-gradient-to-b from-teal-700 via-teal-800 to-teal-900 py-2 px-3 text-gray-100 mr-2 rounded shadow-lg hover:ring-2 ring-teal-500">Add +</a>
-        </div>
-    </div>
-    <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs uppercase bg-gray-700 text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        ID
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Category name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Created_at
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Updated_at
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($categories as $category): ?>
-                <tr class="border-b text-grey-100 bg-gray-800 border-gray-700">
-                    <td scope="row" class="px-6 py-4 font-medium  whitespace-nowrap text-white">
-                        <?php echo $category->id; ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium  whitespace-nowrap text-white">
-                        <?php echo $category->name; ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium  whitespace-nowrap text-white">
-                        <?php echo $category->created_at; ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium  whitespace-nowrap text-white">
-                        <?php echo $category->updated_at; ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium  whitespace-nowrap text-white">
-                        <!-- <form action="destory.php" method="POST">
-                            <input type="hidden" type="text" name="id" value="<?php echo $product->id; ?>">
-                            <button class="px-4 py-2 bg-red-400 rounded-md">delete</button>
-                        </form> -->
-                        <a class="px-3 py-2 bg-gradient-to-b from-blue-700 via-blue-800 to-blue-900 rounded hover:ring-2" href="../categories/edit.php?id=<?php echo $category->id; ?>">Edit</a>
+<body class="from-amber-200 via-amber-300 to-amber-500 bg-gradient-to-br">
+    
 
-                        <a class="px-3 py-2 bg-gradient-to-b from-red-500 to-red-900 rounded hover:ring-2 ring-gray-600" href="../categories/destroy.php?id=<?php echo $category->id; ?>">Delete</a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+    <div class="bg-gray-500 shadow-xl py-1 px-3 text-gray-300 text-sm font-bold inline"><a href="../"><-Back</a></div>
+    <div class='flex min-h-screen items-center justify-center min-h-screen '>
+        <div class="flex items-center justify-center min-h-[450px]">
+            <div class="overflow-x-auto relative sm:rounded-lg">
+                <div class="flex justify-between my-2">
+                    <h1 class="font-bold text-sm text-white shadow-lg border-white bg-green-500 px-2 py-1">Product Table</h1>
+                    <div class="">
+                        <!-- <a class="bg-black rounded-md shadow-xl py-2 px-5 text-white" href="recycle_bin/products.php">Recycle Bin</a> -->
+                        <a class="bg-gray-800 rounded-md shadow-xl py-1 px-3 text-white text-sm" href="../categories/create.php">ADD +</a>
+                    </div>
+                </div>
+                <div class="overflow-x-auto relative shadow-xl sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="py-3 px-6">Category Name</th>
+                        <th scope="col" class="py-3 px-6">Created_at</th>
+                        <th scope="col" class="py-3 px-6">Updated_at</th>
+                        <th scope="col" class="py-3 px-6">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                <?php foreach ($products as $product) : ?>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="py-4 px-6"><?php echo $product->name ?></td>
+                        <td class="py-4 px-6"><?php echo $product->created_at ?></td>
+                        <td class="py-4 px-6"><?php echo $product->updated_at ?></td>
+                        <td class="py-4 px-6">
+                            <a class="px-3 py-1 rounded-md bg-blue-600 text-white" href="/categories/edit.php?id=<?php echo $product->id;?>">edit</a>
+                            <a class="px-3 py-1 rounded-md bg-red-600 text-white" href="/categories/destroy.php?id=<?php echo $product->id;?>">delete</a>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+                </div>
+        </div>
+        
+    </div>
     </div>
 
 </body>
