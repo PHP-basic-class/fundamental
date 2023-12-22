@@ -1,4 +1,4 @@
-<!-- <?php 
+<?php 
 require_once "../controller/CategoryController.php";
 $controller = new CategoryController();
 $product = $controller->categoryEdit($_GET["id"]);
@@ -29,4 +29,4 @@ $product = $controller->categoryEdit($_GET["id"]);
     </div>
 </body>
 </html>
- -->
+

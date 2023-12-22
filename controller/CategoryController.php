@@ -79,16 +79,12 @@ class CategoryController extends CDB
     {
         try {
             $statement = $this->pdo->prepare("
-                update 
-                    category
-                set 
-                    deleted_at = now()
-                where id = :id;
+                delete from category where id =:id;
             "); 
             $statement->bindParam(":id", $id);
             if ($statement->execute())
             {
-                header("Location: http://127.0.0.1:8000/categories");
+                header("Location: http://localhost:8000/categories");
             } else {
                 throw new Exception("Error while creating a new product!");
             }
