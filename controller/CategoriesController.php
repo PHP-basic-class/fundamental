@@ -11,8 +11,8 @@
         function store($request){
             try{
                 $statement = $this->pdo->prepare('
-                    INSERT INTO categories (name)
-                    VALUES (:name);
+                    INSERT INTO categories (name, created_at, updated_at)
+                    VALUES (:name, NOW(), NOW());
                 ');
                 $statement->bindParam(':name', $request["name"]);
                 if($statement->execute()){

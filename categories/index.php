@@ -32,6 +32,8 @@
                         <tr class="text-center">
                             <th>ID</th>
                             <th>Name</th>
+                            <th>created_at</th>
+                            <th>updated_at</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,6 +42,8 @@
                         <tr class="text-center">
                             <td><?php echo $product->id ?></td>
                             <td><?php echo $product->name ?></td>
+                            <td><?php echo $product->created_at ?></td>
+                            <td><?php echo $product->updated_at ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $product->id ?>" class="btn btn-primary btn-sm">Edit</a>
                                 <a href="destroy.php?id=<?php echo $product->id ?>" class="btn btn-danger btn-sm">Delete</a>
