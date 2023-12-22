@@ -1,21 +1,25 @@
-<?php 
-
-class DB 
-{
-    public $host = "127.0.0.1";
-    public $dbname = "first";
-    public $user = "root";
-    public $password = "admin";
-    public $port = 3306;
+<?php
+// create table products(
+//     id int unsigned not null primary key auto_increment,
+//     name varchar(255) not null,
+//     price int unsigned not null,
+//     stock int unsigned not null,
+//     category varchar(255) not null,
+//     created_at date not null,
+//     updated_at date not null);
+class DB{
+    public $host =  'localhost';
+    public $db = 'testing';
+    public $user = 'root';
+    public $pass = 'admin';
     public $pdo;
-    public function __construct()
-    {
+    public function __construct(){
         try {
-            $pdo = new PDO ("mysql:host=$this->host;port=$this->port;dbname=$this->dbname", $this->user, $this->password);
+            $pdo = new PDO ("mysql:host=$this->host; dbname=$this->db", $this->user, $this->pass);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo = $pdo;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            return $e->getMessage();
         }
     }
-}
+};
