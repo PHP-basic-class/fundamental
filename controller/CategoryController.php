@@ -18,19 +18,21 @@ class CategoryController extends DB
             $e->getMessage();
         }
     }
-     # store categories
-     public function store($request){
-        try{
+    # store categories
+    public function store($request)
+    {
+        try {
             $stmt = $this->pdo->prepare("INSERT INTO categories (name, created_at, updated_at) VALUES (:name, now() , now())");
-            $categories = $stmt->fetch(PDO::FETCH_OBJ);
             $stmt->bindParam(':name', $request['category_name']);
             if ($stmt->execute()) {
-                header("location: $this->host");              
+                $message = "Successfully created a new category!";
+                $name = $request['category_name'];
+                header("Location:http://localhost:8000/categories/index.php?message=$message&category_name=$name&type=store");
             } else {
                 throw new Exception('Error on category creating!');
             }
-        }catch(Exception $e){
-            echo $e;
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
     #Edit Category
@@ -50,7 +52,7 @@ class CategoryController extends DB
         }
     }
     #Update Category
-    public function update($request,$id)
+    public function update($request, $id)
     {
         try {
             $stmt = $this->pdo->prepare("UPDATE categories SET name = :name , created_at = :created_at , updated_at = now() WHERE id = :id");
@@ -62,27 +64,27 @@ class CategoryController extends DB
                 $name =  $request['category_name'];
                 header("Location:http://localhost:8000/categories/index.php?message=$message&category_name=$name&type=update");
             } else {
-                throw new Exception('Error on product updating!');
+                throw new Exception('Error on category updating!');
             }
         } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
-     # Destroy Product
-     public function destroy($id)
-     {
-         try {
-             $stmt = $this->pdo->prepare("DELETE FROM categories WHERE id=:id");
-             $stmt->bindParam(':id', $id);
-             if ($stmt->execute()) {
-                 $message = "Successfully deleted a category!";
-                 $name = $_GET['name'];
-                 header("Location:http://localhost:8000/categories/index.php?category_name=$name&message=$message&type=delete");
-             } else {
-                 throw new Exception('Error on category deleting!');
-             }
-         } catch (Exception $e) {
-             echo $e->getMessage();
-         }
-     }
+    # Destroy Product
+    public function destroy($id)
+    {
+        try {
+            $stmt = $this->pdo->prepare("DELETE FROM categories WHERE id=:id");
+            $stmt->bindParam(':id', $id);
+            if ($stmt->execute()) {
+                $message = "Successfully deleted a category!";
+                $name = $_GET['name'];
+                header("Location:http://localhost:8000/categories/index.php?category_name=$name&message=$message&type=delete");
+            } else {
+                throw new Exception('Error on category deleting!');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }

@@ -25,7 +25,7 @@
                             <?php echo $_GET['message'] ?>
                         </span>
                         <span class=" font-bold pl-3 italic text-emerald-500 underline">
-                            <?= $_GET['product_name'] ?>
+                            <?= $_GET['category_name'] ?>
                         </span>
                     </div>
                     <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-border-3" aria-label="Close">
@@ -46,7 +46,7 @@
                     <div class="ms-3 text-sm font-medium">
                         <span><?= $_GET['message'] ?></span>
                         <span class=" font-bold pl-3 italic text-emerald-500 underline">
-                            <?= $_GET['product_name'] ?>
+                            <?= $_GET['category_name'] ?>
                         </span>
                     </div>
                     <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-border-2" aria-label="Close">
@@ -67,7 +67,7 @@
                     <div class="ms-3 text-sm font-medium">
                         <span><?= $_GET['message'] ?></span>
                         <span class=" font-bold pl-3 italic text-emerald-500 underline">
-                            <?= $_GET['product_name'] ?>
+                            <?= $_GET['category_name'] ?>
                         </span>
                     </div>
                     <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-yellow-50 text-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-400 p-1.5 hover:bg-yellow-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-yellow-300 dark:hover:bg-gray-700" data-dismiss-target="#alert-border-4" aria-label="Close">
@@ -138,7 +138,7 @@
                                 <?= $category->updated_at ?>
                             <td class="px-6 py-2 text-center">
                                 <a href="edit.php?id=<?php echo $category->id; ?>" type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Edit</a>
-                                <a href="destroy.php?id=<?php echo $category->id;?>" type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-4 py-2 text-center me-2 mb-2">Delete</a>
+                                <a href="destroy.php?id=<?php echo $category->id; ?>&name=<?= $category->name; ?>" type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-4 py-2 text-center me-2 mb-2">Delete</a>
                             </td>
                             <td class="px-3 py-2">
                             </td>

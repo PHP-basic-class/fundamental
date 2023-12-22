@@ -25,7 +25,6 @@ class ProductController extends DB
     {
         try {
             $stmt = $this->pdo->prepare("INSERT INTO products (name, price, stock , category , created_at, updated_at) VALUES (:name, :price , :stock, :category, now() , now())");
-            $products = $stmt->fetchAll(PDO::FETCH_OBJ);
             $stmt->bindParam(':name', $request['product_name']);
             $stmt->bindParam(':price', $request['product_price']);
             $stmt->bindParam(':stock', $request['product_amount']);
@@ -33,7 +32,7 @@ class ProductController extends DB
             if ($stmt->execute()) {
                 $message = "Successfully created a new product!";
                 $name = $request['product_name'];
-                header("Location:http://localhost:3000/products/index.php?message=$message&product_name=$name&type=store");
+                header("Location:http://localhost:8000/products/index.php?message=$message&product_name=$name&type=store");
             } else {
                 throw new Exception('Error on product creating!');
             }
@@ -73,7 +72,7 @@ class ProductController extends DB
             if ($stmt->execute()) {
                 $message = "Successfully updated a product!";
                 $name =  $request['product_name'];
-                header("Location:http://localhost:3000/products/index.php?message=$message&product_name=$name&type=update");
+                header("Location:http://localhost:8000/products/index.php?message=$message&product_name=$name&type=update");
             } else {
                 throw new Exception('Error on product updating!');
             }
@@ -91,7 +90,7 @@ class ProductController extends DB
             if ($stmt->execute()) {
                 $message = "Successfully deleted a product!";
                 $name = $_GET['name'];
-                header("Location:http://localhost:3000/products/index.php?product_name=$name&message=$message&type=delete");
+                header("Location:http://localhost:8000/products/index.php?product_name=$name&message=$message&type=delete");
             } else {
                 throw new Exception('Error on product deleting!');
             }
@@ -100,4 +99,3 @@ class ProductController extends DB
         }
     }
 }
-
