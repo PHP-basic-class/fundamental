@@ -32,8 +32,7 @@
         function edit($id)
         {
             try {
-                $db = new DB();
-                $statement = $db->pdo->prepare("SELECT * FROM categories WHERE id = :id");
+                $statement = $this->pdo->prepare("SELECT * FROM categories WHERE id = :id");
                 $statement->bindParam(":id", $id);
                 if ($statement->execute()) {
                     $category = $statement->fetch(PDO::FETCH_OBJ); 
@@ -49,8 +48,7 @@
         public function update ($request, $id)
         {
             try {
-                $db = new DB();
-                $statement = $db->pdo->prepare("
+                $statement = $this->pdo->prepare("
                     update categories 
                         set 
                             name = :name
