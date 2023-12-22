@@ -4,7 +4,7 @@ class CategoryController extends CDB
 {
     public function categoryIndex ()
     {
-        $statement = $this->pdo->query("select * from categories;");
+        $statement = $this->pdo->query("select * from categories");
         $products = $statement->fetchAll(PDO::FETCH_OBJ);
         return $products;
     }

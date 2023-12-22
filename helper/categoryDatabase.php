@@ -6,7 +6,7 @@ class CDB
     public $dbname = "first";
     public $user = "root";
     public $password = "";
-    // public $port = 3306;
+    public $port = 3306;
     public $pdo;
     public function __construct()
     {
