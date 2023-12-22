@@ -69,5 +69,22 @@
                 echo $e->getMessage();
             }
         }
+
+        public function destroy($id)
+        {
+            try {
+                $statement = $this->pdo->prepare("
+                    DELETE FROM categories WHERE id = :id
+                ");
+                $statement->bindParam(":id", $id);
+                if ($statement->execute()) {
+                    header("Location: http://localhost:8000/categories");
+                } else {
+                    throw new Exception("Errors");
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
+        }
     }
 ?>
