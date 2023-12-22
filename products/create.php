@@ -23,8 +23,12 @@
                 <input required type="number" name="stock" class="w-full border-2 border-blue-600 px-5 py-2">
             </div>
             <div class="my-3">
+                <label for="description">Description</label>
+                <textarea required name="description" class="w-full border-2 border-blue-600 px-5 py-2"></textarea>
+            </div>
+            <div class="my-3">
                 <label for="category">Category</label>
-                <input required type="text" name="category" class="w-full border-2 border-blue-600 px-5 py-2">
+                <input required name="category" class="w-full border-2 border-blue-600 px-5 py-2">
             </div>
             <button class="w-full py-2 bg-blue-600 text-white my-3 rounded-md">Save</button>
             <div class="my-2 py-2 w-full bg-gray-800 text-white rounded-md text-center">

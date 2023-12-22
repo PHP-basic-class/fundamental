@@ -30,6 +30,10 @@ $product = $controller->edit($_GET["id"]);
                 <input value="<?php echo $product->stock;?>" type="number" name="stock" class="w-full border-2 border-blue-600 px-5 py-2">
             </div>
             <div class="my-3">
+                <label for="description">Description</label>
+                <textarea name="description" class="w-full border-2 border-blue-600 px-5 py-2"><?php echo $product->description ?></textarea>
+            </div>
+            <div class="my-3">
                 <label for="category">Category</label>
                 <input required value="<?php echo $product->category;?>" type="text" name="category" class="w-full border-2 border-blue-600 px-5 py-2">
             </div>
