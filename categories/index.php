@@ -19,7 +19,6 @@ $categories = $controller->index();
         </div>  
         <div class="mr-10">
             <a class="bg-blue-700 rounded-md shadow-xl py-2 px-5 text-white" href="../">Home</a>
-            <a class="bg-black rounded-md shadow-xl py-2 px-5 text-white" href="../recycle_bin/categories.php">Recycle Bin</a>
             <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="../categories/create.php">ADD +</a>
         </div>
     </div>

@@ -4,7 +4,7 @@ class CategoryController extends DB
 {
     public function index()
     {
-        $statement = $this->pdo->query("SELECT * FROM `categories` WHERE `deleted_at` IS NULL");
+        $statement = $this->pdo->query("SELECT * FROM `categories`");
         $categories = $statement->fetchAll(PDO::FETCH_OBJ);
         return $categories;
     }
@@ -43,10 +43,7 @@ class CategoryController extends DB
     {
         try {
             $statement = $this->pdo->prepare("
-                update 
-                    categories
-                set 
-                    deleted_at = now()
+                delete from categories
                 where id = :id;
             ");
             $statement->bindParam(":id", $id);
@@ -65,8 +62,7 @@ class CategoryController extends DB
         $statement = $this->pdo->prepare("
         update categories 
             set 
-                name = :name, 
-                created_at = :created_at,
+                name = :name,
                 updated_at = now()
             where id = :id
     "); 
