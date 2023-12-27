@@ -2,16 +2,16 @@
 
 class DB 
 {
-    public $host = "localhost";
-    public $dbname = "fundamental";
+    public $host = "127.0.0.1";
+    public $dbname = "first";
     public $user = "root";
-    public $password = "shein";
-
+    public $password = "admin";
+    public $port = 3306;
     public $pdo;
     public function __construct()
     {
         try {
-            $pdo = new PDO ("mysql:dbhost=$this->host;dbname=$this->dbname", $this->user, $this->password);
+            $pdo = new PDO ("mysql:host=$this->host;port=$this->port;dbname=$this->dbname", $this->user, $this->password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo = $pdo;
         } catch (PDOException $e) {
