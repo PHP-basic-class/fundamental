@@ -19,7 +19,7 @@ $categories = $controller->index();
             <a href="/" class="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 mx-3  rounded">
                 Home
             </a>
-            <a href="create.php" class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <a href="./create.php" class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 New +
             </a>
         </div>
@@ -51,7 +51,6 @@ $categories = $controller->index();
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <?php echo $category->name; ?>
                         </td>
-                       
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <?php echo $category->created_at; ?>
@@ -60,9 +59,9 @@ $categories = $controller->index();
                             <?php echo $category->updated_at; ?>
                         </td>
                         <td class="px-6 py-4">
-                        <a href="edit.php?id=<?php echo $category->id; ?>&name=<?php echo $category->name; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="/categories/edit.php?id=<?php echo $category->id; ?>&name=<?php echo $category->name; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                         |
-                        <a href="destroy.php?id=<?php echo $category->id; ?>" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                        <a href="/categories/destroy.php?id=<?php echo $category->id; ?>" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

@@ -21,7 +21,7 @@ class CategoryController extends DB
             $statement->bindParam(":name", $request["name"]);
 
             if ($statement->execute()) {
-                header("Location: http://localhost:8000/categories");
+                header("Location: http://localhost:8000/categories/");
             } else {
                 throw new Exception("Error while creating a new category!");
             }
