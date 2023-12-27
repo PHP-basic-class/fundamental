@@ -9,64 +9,65 @@ $categories = $controller->index();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Category List</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="flex justify-between my-5">
-        <div class="ml-6">
-            <h1>Category Lists</h1>
-        </div>  
-        <div class="mr-10">
-            <a class="bg-blue-700 rounded-md shadow-xl py-2 px-5 text-white" href="../">Home</a>
-            <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="../categories/create.php">ADD +</a>
+<body class="bg-gray-100">
+    <div class="p-4 flex items-center justify-between bg-white shadow-md">
+        <p class="text-lg sm:text-xl text-blue-700 font-bold">Category List</p>
+        <div>
+            <a href="/" class="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 mx-3  rounded">
+                Home
+            </a>
+            <a href="create.php" class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                New +
+            </a>
         </div>
+        
     </div>
-    <div class="relative overflow-x-auto my-5">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+    <div class="overflow-x-auto shadow-md sm:rounded-lg bg-white mt-4">
+        <table class="w-full text-sm sm:text-base text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs sm:text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Category ID
+                        Category name
+                    </th>
+            
+                    <th scope="col" class="px-6 py-3">
+                        Created at
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Category Name
+                        Updated at
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Created At
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Updated At
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Actions
+                        Action
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($categories as $category) : ?>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?php echo $category->id; ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?php echo $category->name; ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?php echo $category->created_at; ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?php echo $category->updated_at; ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <a class="px-5 py-2 rounded-md bg-blue-600 text-white" href="/categories/edit.php?id=<?php echo $category->id;?>">edit</a>
-                        <a class="px-5 py-2 rounded-md bg-red-600 text-white" href="/categories/destroy.php?id=<?php echo $category->id;?>">delete</a>
-                    </td>
-                </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <?php echo $category->name; ?>
+                        </td>
+                       
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <?php echo $category->created_at; ?>
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <?php echo $category->updated_at; ?>
+                        </td>
+                        <td class="px-6 py-4">
+                        <a href="edit.php?id=<?php echo $category->id; ?>&name=<?php echo $category->name; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        |
+                        <a href="destroy.php?id=<?php echo $category->id; ?>" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
-
 </body>
 </html>
