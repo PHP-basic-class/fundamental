@@ -34,9 +34,6 @@ $products = $controller->products();
                         Product Stock
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Category
-                    </th>
-                    <th scope="col" class="px-6 py-3">
                         Deleted At
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -55,9 +52,6 @@ $products = $controller->products();
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <?php echo $product->stock ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?php echo $product->category ?>
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <?php echo $product->deleted_at ?>
