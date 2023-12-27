@@ -9,20 +9,25 @@ class ProductController extends DB
         return $products;
     }
 
+    public function create () 
+    {
+        return $this->pdo->query("SELECT * FROM `categories`")->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function store ($request)
     {
         try {
             $statement = $this->pdo->prepare("
                 insert into products
-                    (name, price, stock, description, category, created_at, updated_at)
+                    (name, price, stock, description, category_id, created_at, updated_at)
                 values 
-                    (:name, :price, :stock, :description, :category, now(), now());
+                    (:name, :price, :stock, :description, :category_id, now(), now());
             "); 
             $statement->bindParam(":name", $request["name"]);
             $statement->bindParam(":price", $request["price"]);
             $statement->bindParam(":stock", $request["stock"]);
             $statement->bindParam(":description", $request["description"]);
-            $statement->bindParam(":category", $request["category"]);
+            $statement->bindParam(":category_id", $request["category_id"]);
 
             if ($statement->execute())
             {
@@ -43,7 +48,9 @@ class ProductController extends DB
             $statement->bindParam(":id", $id);
             if ($statement->execute()) {
                 $product = $statement->fetch(PDO::FETCH_OBJ); 
-                return $product;
+                $categories = $this->pdo->query("SELECT * FROM `categories`")->fetchAll(PDO::FETCH_OBJ);
+                $result = ["product" => $product, "categories" => $categories];
+                return $result;
             } else {
                 throw new Exception("Error!");
             }
@@ -63,7 +70,7 @@ class ProductController extends DB
                         price = :price, 
                         stock = :stock, 
                         description = :description,
-                        category = :category,
+                        category_id = :category_id,
                         created_at = :created_at,
                         updated_at = now()
                     where id = :id
@@ -73,7 +80,7 @@ class ProductController extends DB
             $statement->bindParam(":price", $request["price"]);
             $statement->bindParam(":stock", $request["stock"]);
             $statement->bindParam(":description", $request["description"]);
-            $statement->bindParam(":category", $request["category"]);
+            $statement->bindParam(":category_id", $request["category_id"]);
             $statement->bindParam(":created_at", $request["created_at"]);
 
             if ($statement->execute())

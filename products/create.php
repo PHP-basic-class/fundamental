@@ -1,3 +1,9 @@
+<?php 
+    require_once "../controller/ProductController.php";
+    $controller = new ProductController();
+    $categories = $controller->create();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,8 +34,14 @@
             </div>
             <div class="my-3">
                 <label for="category">Category</label>
-                <input required name="category" class="w-full border-2 border-blue-600 px-5 py-2">
+                <select required name="category_id" class="w-full border-2 border-blue-600 px-5 py-2">
+                    <option value="" disabled selected></option>
+                    <?php foreach ($categories as $category): ?>
+                    <option value="<?php echo $category->id?>"><?php echo $category->name?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
+            
             <button class="w-full py-2 bg-blue-600 text-white my-3 rounded-md">Save</button>
             <div class="my-2 py-2 w-full bg-gray-800 text-white rounded-md text-center">
                 <a href="index.php" class="w-full">Back</a>

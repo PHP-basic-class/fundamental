@@ -1,8 +1,8 @@
 <?php 
 require_once "../controller/ProductController.php";
 $controller = new ProductController();
-$product = $controller->edit($_GET["id"]);
-
+$product = $controller->edit($_GET["id"])["product"];
+$categories = $controller->edit($_GET["id"])["categories"];
 ?>
 
 <!DOCTYPE html>
@@ -33,10 +33,13 @@ $product = $controller->edit($_GET["id"]);
                 <label for="description">Description</label>
                 <textarea name="description" class="w-full border-2 border-blue-600 px-5 py-2"><?php echo $product->description ?></textarea>
             </div>
-            <div class="my-3">
-                <label for="category">Category</label>
-                <input required value="<?php echo $product->category;?>" type="text" name="category" class="w-full border-2 border-blue-600 px-5 py-2">
-            </div>
+            <select required name="category_id" class="w-full border-2 border-blue-600 px-5 py-2">
+                <?php foreach ($categories as $category): ?>
+                    <option value="<?php echo $category->id?>"  <?php if($category->id == $product->category_id) {echo "selected";} ?>>
+                        <?php echo $category->name?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
             <div class="my-3">
                 <input required value="<?php echo $product->created_at;?>" type="hidden" name="created_at" class="w-full border-2 border-blue-600 px-5 py-2">
             </div>

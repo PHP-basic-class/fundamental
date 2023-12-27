@@ -1,7 +1,7 @@
 <?php 
-require_once "../controller/ProductController.php";
-$controller = new ProductController();
-$products = $controller->index();
+require_once "../controller/CategoryController.php";
+$controller = new CategoryController();
+$categories = $controller->index();
 ?>
 
 <!DOCTYPE html>
@@ -25,34 +25,24 @@ $products = $controller->index();
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Product Name
+                        Category Name
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        Product Price
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Product Stock
-                    </th>
+
                     <th scope="col" class="px-6 py-3">
                         Actions
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($products as $product) : ?>
+                <?php foreach ($categories as $category) : ?>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?php echo $product->name; ?>
+                        <?php echo $category->name; ?>
                     </td>
+
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?php echo $product->price ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?php echo $product->stock ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <a class="px-5 py-2 rounded-md bg-blue-600 text-white" href="/products/edit.php?id=<?php echo $product->id;?>">edit</a>
-                        <a class="px-5 py-2 rounded-md bg-red-600 text-white" href="/products/destroy.php?id=<?php echo $product->id;?>">delete</a>
+                        <a class="px-5 py-2 rounded-md bg-blue-600 text-white" href="/categories/edit.php?id=<?php echo $category->id;?>">edit</a>
+                        <a class="px-5 py-2 rounded-md bg-red-600 text-white" href="/categories/destroy.php?id=<?php echo $category->id;?>">delete</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
