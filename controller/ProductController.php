@@ -1,12 +1,14 @@
 <?php 
 require_once "../helper/database.php";
+require_once "../model/Product.php";
+require_once "../model/Category.php";
+
 class ProductController extends DB
 {
     public function index ()
     {
-        $statement = $this->pdo->query("SELECT * FROM `products` WHERE `deleted_at` IS NULL");
-        $products = $statement->fetchAll(PDO::FETCH_OBJ); 
-        return $products;
+        $products = new Product();
+        return $products->all();
     }
 
     public function create () 
@@ -42,21 +44,11 @@ class ProductController extends DB
 
     public function edit ($id)
     {
-        try {
-            $db = new DB();
-            $statement = $db->pdo->prepare("select * from products where id = :id");
-            $statement->bindParam(":id", $id);
-            if ($statement->execute()) {
-                $product = $statement->fetch(PDO::FETCH_OBJ); 
-                $categories = $this->pdo->query("SELECT * FROM `categories`")->fetchAll(PDO::FETCH_OBJ);
-                $result = ["product" => $product, "categories" => $categories];
-                return $result;
-            } else {
-                throw new Exception("Error!");
-            }
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        $productModel = new Product();
+        $product = $productModel->first($id);
+        $categoryModel = new Category();
+        $categories = $categoryModel->all();
+        return ["product" => $product, "categories" => $categories];
     }
 
     public function update ($request, $id)

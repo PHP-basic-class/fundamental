@@ -1,6 +1,7 @@
 <?php 
 
 require_once "../helper/database.php";
+
 class RecycleBinController extends DB
 {
     public function products () 
