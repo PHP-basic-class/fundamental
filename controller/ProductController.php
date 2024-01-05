@@ -8,25 +8,28 @@ class ProductController extends DB
         $products = $statement->fetchAll(PDO::FETCH_OBJ); 
         return $products;
     }
+    public function create(){
+        return $this->pdo->query("SELECT * FROM `categories`")->fetchAll(PDO::FETCH_OBJ);
+    }
 
     public function store ($request)
     {
         try {
             $statement = $this->pdo->prepare("
                 insert into products
-                    (name, price, stock, description, category, created_at, updated_at)
+                    (name, price, stock, description, category_id, created_at, updated_at)
                 values 
-                    (:name, :price, :stock, :description, :category, now(), now());
+                    (:name, :price, :stock, :description, :category_id, now(), now());
             "); 
             $statement->bindParam(":name", $request["name"]);
             $statement->bindParam(":price", $request["price"]);
             $statement->bindParam(":stock", $request["stock"]);
             $statement->bindParam(":description", $request["description"]);
-            $statement->bindParam(":category", $request["category"]);
+            $statement->bindParam(":category_id", $request["category_id"]);
 
             if ($statement->execute())
             {
-                header("Location: http://127.0.0.1:8000/products");
+                header("Location: http://localhost:8000/products");
             } else {
                 throw new Exception("Error while creating a new product!");
             }
@@ -42,8 +45,10 @@ class ProductController extends DB
             $statement = $db->pdo->prepare("select * from products where id = :id");
             $statement->bindParam(":id", $id);
             if ($statement->execute()) {
-                $product = $statement->fetch(PDO::FETCH_OBJ); 
-                return $product;
+                $product = $statement->fetch(PDO::FETCH_OBJ);
+                $categories = $this->pdo->query("SELECT * FROM `categories`")->fetchAll(PDO::FETCH_OBJ);
+                $result = ["product" => $product , "categories" => $categories];
+                return $result;
             } else {
                 throw new Exception("Error!");
             }

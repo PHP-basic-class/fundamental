@@ -4,7 +4,7 @@ create table products (
     description text not null, 
     price int unsigned not null,  
     stock int unsigned not null, 
-    category varchar(100) not null,  
+    category_id int unsigned not null,  
     created_at datetime not null,
     updated_at datetime not null, 
     deleted_at datetime
