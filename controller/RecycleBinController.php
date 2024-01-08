@@ -10,4 +10,9 @@ class RecycleBinController extends DB
         $products = $statement->fetchAll(PDO::FETCH_OBJ);
         return $products;
     }
+
+    public function recoverProduct ()
+    {
+        
+    }
 }
