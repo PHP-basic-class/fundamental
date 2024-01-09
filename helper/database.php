@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-class DB 
+class DB
 {
     public static $pdo;
     public static function connect()
@@ -8,10 +8,11 @@ class DB
         $host = "127.0.0.1";
         $dbname = "first";
         $user = "root";
-        $password = "admin";
+        // $password = "admin";
+        $password = '';
         $port = 3306;
         try {
-            $pdo = new PDO ("mysql:host=$host;port=$port;dbname=$dbname", $user, $password);
+            $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $user, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$pdo = $pdo;
         } catch (PDOException $e) {
