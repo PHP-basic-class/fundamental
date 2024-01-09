@@ -2,6 +2,7 @@
 
 require_once "../helper/database.php";
 require_once '../model/Product.php';
+require_once '../model/Category.php';
 require_once '../helper/redirect.php';
 
 class RecycleBinController extends DB
