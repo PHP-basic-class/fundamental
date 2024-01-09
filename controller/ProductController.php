@@ -43,6 +43,8 @@ class ProductController extends DB
 
     public function destroy ($id)
     {
-        
+        $productModel = new Product();
+        $productModel->softDelete($id);
+        redirect("/products");
     }
 }
