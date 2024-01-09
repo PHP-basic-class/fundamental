@@ -57,9 +57,11 @@ class Model
 
     public function softDelete($id)
     {
-        $sql = "UPDATE {$this->table} set deleted_at = NOW() WHERE `id` = ?";
-        $this->query($sql,$id);
+        $sql = "UPDATE {$this->table} SET `deleted_at` = NOW() WHERE `id` = ?";
+        $this->query($sql, [$id]);
     }
+    
+
 
     public function recoverDelete($id)
     {
