@@ -5,10 +5,10 @@ class DB
     public static $pdo;
     public static function connect()
     {
-        $host = "127.0.0.1";
+        $host = "localhost";
         $dbname = "first";
         $user = "root";
-        $password = "admin";
+        $password = "Butterflies123$";
         $port = 3306;
         try {
             $pdo = new PDO ("mysql:host=$host;port=$port;dbname=$dbname", $user, $password);
