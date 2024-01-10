@@ -1,7 +1,8 @@
 <?php 
 require_once "../controller/CategoryController.php";
-$controller = new CategoryController();
-$categories = $controller->index();
+$categoryController = new CategoryController();
+$categories = $categoryController->index()["categories"];
+$products = $categoryController->index()["products"];
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,9 @@ $categories = $controller->index();
                     <th scope="col" class="px-6 py-3">
                         Category Name
                     </th>
-
+                    <th scope="col" class="px-6 py-3">
+                        Products
+                    </th>
                     <th scope="col" class="px-6 py-3">
                         Actions
                     </th>
@@ -38,7 +41,17 @@ $categories = $controller->index();
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <?php echo $category->name; ?>
                     </td>
-
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <?php 
+                        $result=[];
+                        foreach($products as $product){
+                            if($product->category_id == $category->id){
+                                array_push($result, $product);
+                            };
+                        };
+                        echo count($result);
+                        ?>
+                    </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <a class="px-5 py-2 rounded-md bg-blue-600 text-white" href="/categories/edit.php?id=<?php echo $category->id;?>">edit</a>
                         <a class="px-5 py-2 rounded-md bg-red-600 text-white" href="/categories/destroy.php?id=<?php echo $category->id;?>">delete</a>
