@@ -6,19 +6,20 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="w-[40%] mx-auto shadow-lg my-12 py-5">
-        <h1 class="text-center">Create Category</h1>
-        <form class="w-[90%] mx-auto" action="store.php" method="POST">
-            <div class="my-3">
-                <label for="name">Name</label>
-                <input required type="text" name="name" class="w-full border-2 border-blue-600 px-5 py-2">
+<body class="bg-gray-200">
+    <div class="w-[30%] mx-auto shadow-lg my-12  py-4 rounded" >
+        <h1 class="text-center text-gray-100 text-xl px-5 py-2 bg-gray-700 rounded">Category</h1>
+        <form class="w-[90%] mx-auto" action="../categories/store.php" method="POST">
+            <div class="my-5">
+                <input class="w-full px-3 py-2 bg-gray-200 border-2 border-slate-300" required type="text" placeholder="Category Name" name="name">
             </div>
-            <button class="w-full py-2 bg-blue-600 text-white my-3 rounded-md">Save</button>
-            <div class="my-2 py-2 w-full bg-gray-800 text-white rounded-md text-center">
-                <a href="index.php" class="w-full">Back</a>
-            </div>
+            <button class="w-full bg-gradient-to-b from-blue-700 to-blue-900 rounded py-2 my-2 text-gray-100 hover:ring ring-blue-400">Add</button>
         </form>
+        <div class="w-[90%] mx-auto">
+            <a href="../categories/index.php">
+            <button  class="w-full bg-gradient-to-b from-gray-800 via-gray-900 to-black rounded py-2 text-gray-100 hover:ring ring-gray-400">Back</button>
+            </a>
+        </div>
     </div>
 </body>
 </html>

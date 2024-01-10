@@ -6,9 +6,7 @@ class RecycleBinController extends DB
 {
     public function products () 
     {
-        $statement = $this->pdo->query("SELECT * FROM `products` WHERE `deleted_at` IS NOT NULL");
-        $products = $statement->fetchAll(PDO::FETCH_OBJ);
-        return $products;
+        return $this->pdo->query("SELECT * FROM `products` WHERE `deleted_at` IS NOT NULL")->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function recoverProduct ()
