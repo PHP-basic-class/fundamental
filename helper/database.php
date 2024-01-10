@@ -9,6 +9,10 @@ class DB
         $dbname = "first";
         $user = "root";
         $password = "admin";
+
+        $host = "localhost";
+        $password = "root12345";
+
         $port = 3306;
         try {
             $pdo = new PDO ("mysql:host=$host;port=$port;dbname=$dbname", $user, $password);
