@@ -1,12 +1,9 @@
 <?php 
 require_once "../controller/ProductController.php";
-require_once "../controller/CategoryController.php";
 
 $controller = new ProductController();
-$products = $controller->index();
-
-$category_controller = new CategoryController();
-$categories = $category_controller->index();
+$products = $controller->index()["products"];
+$categories = $controller->index()["categories"];
 ?>
 
 <!DOCTYPE html>

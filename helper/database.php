@@ -10,8 +10,10 @@ class DB
         $user = "root";
         $password = "admin";
 
+        /* This save times, no edit just remove
         $host = "localhost";
         $password = "root12345";
+        */
 
         $port = 3306;
         try {
