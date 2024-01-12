@@ -1,7 +1,9 @@
 <?php 
 require_once "../controller/ProductController.php";
+
 $controller = new ProductController();
-$products = $controller->index();
+$products = $controller->index()["products"];
+$categories = $controller->index()["categories"];
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +27,9 @@ $products = $controller->index();
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
+                        Image
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Product Name
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -32,6 +37,9 @@ $products = $controller->index();
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Product Stock
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Categories
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Actions
@@ -42,6 +50,9 @@ $products = $controller->index();
                 <?php foreach ($products as $product) : ?>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <img src="<?php echo $product->image; ?>" class="w-[70px] h-[70px] object-cover" alt="product-image">
+                    </td>
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <?php echo $product->name; ?>
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -49,6 +60,15 @@ $products = $controller->index();
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <?php echo $product->stock ?>
+                    </td>
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <?php 
+                            foreach($categories as $category){
+                                if($category->id == $product->category_id){
+                                    echo $category->name;
+                                }
+                            }
+                        ?>
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <a class="px-5 py-2 rounded-md bg-blue-600 text-white" href="/products/edit.php?id=<?php echo $product->id;?>">edit</a>
