@@ -1,5 +1,6 @@
 <?php 
 require_once "../helper/database.php";
+require_once "../helper/storage.php";
 require_once "../helper/redirect.php";
 require_once "../model/Product.php";
 require_once "../model/Category.php";
@@ -21,6 +22,7 @@ class ProductController extends DB
     public function store ($request)
     {
         $productModel = new Product();
+        $request["image"] = Storage::upload($request["image"]);
         $productModel->create($request);
         redirect("/products");
     }

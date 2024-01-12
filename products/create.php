@@ -15,10 +15,14 @@
 <body>
     <div class="w-[40%] mx-auto shadow-lg my-12 py-5">
         <h1 class="text-center">Create Product</h1>
-        <form class="w-[90%] mx-auto" action="store.php" method="POST">
+        <form class="w-[90%] mx-auto" action="store.php" method="POST" enctype="multipart/form-data">
             <div class="my-3">
                 <label for="name">Name</label>
                 <input required type="text" name="name" class="w-full border-2 border-blue-600 px-5 py-2">
+            </div>
+            <div class="my-3">
+                <label for="image">Image</label>
+                <input required type="file" name="image" class="w-full border-2 border-blue-600 px-5 py-2">
             </div>
             <div class="my-3">
                 <label for="price">Price</label>

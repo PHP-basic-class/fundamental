@@ -1,6 +1,7 @@
 create table products (
     id int unsigned primary key not null auto_increment, 
     name varchar (100) not null, 
+    image varchar (255) not null,
     description text not null, 
     price int unsigned not null,  
     stock int unsigned not null, 
