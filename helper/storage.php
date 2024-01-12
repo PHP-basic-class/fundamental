@@ -10,4 +10,10 @@ class Storage
         move_uploaded_file($tmp_path, $fileName);
         return "http://localhost:8000/storage/" . basename($file["name"]);
     }
+
+    public static function remove($filePath) 
+    {
+        $fileName = basename($filePath);
+        unlink(self::$directory . $fileName);
+    } 
 }
