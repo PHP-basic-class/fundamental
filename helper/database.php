@@ -9,6 +9,12 @@ class DB
         $dbname = "first";
         $user = "root";
         $password = "admin";
+
+        /* This save times, no edit just remove
+        $host = "localhost";
+        $password = "root12345";
+        */
+
         $port = 3306;
         try {
             $pdo = new PDO ("mysql:host=$host;port=$port;dbname=$dbname", $user, $password);
