@@ -9,7 +9,9 @@ class ProductController extends DB
     public function index ()
     {
         $products = new Product();
-        return $products->all();
+        $categories = new Category();
+
+        return ["products" => $products->all(), "categories" => $categories->all()];
     }
 
     public function create () 
