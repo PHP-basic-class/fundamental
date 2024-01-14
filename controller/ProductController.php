@@ -48,8 +48,7 @@ class ProductController extends DB
     public function destroy ($id)
     {
         $productModel = new Product();
-        Storage::remove($productModel->first($id)->image);
-        $productModel->delete($id);
+        $productModel->softDelete($id);
         redirect("/products");
     }
 }
