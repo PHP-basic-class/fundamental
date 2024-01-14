@@ -8,8 +8,11 @@ class DB
         $host = "127.0.0.1";
         $dbname = "first";
         $user = "root";
-        // $password = "admin";
-        $password = 'admin';
+        $password = "admin";
+        /* This save times, no edit just remove
+        $host = "localhost";
+        $password = "root12345";
+        */
         $port = 3306;
         try {
             $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $user, $password);
