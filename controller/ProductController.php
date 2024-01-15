@@ -1,33 +1,31 @@
-<?php
+<?php 
 require_once "../helper/database.php";
 require_once "../helper/redirect.php";
 require_once "../model/Product.php";
 require_once "../model/Category.php";
-require_once "../helper/storage.php";
 
 class ProductController extends DB
 {
-    public function index()
+    public function index ()
     {
         $products = new Product();
         return $products->all();
     }
 
-    public function create()
+    public function create () 
     {
         $categoryModel = new Category();
         return $categoryModel->all();
     }
 
-    public function store($request)
+    public function store ($request)
     {
         $productModel = new Product();
-        $request['image'] = Storage::upload($request['image']);
         $productModel->create($request);
         redirect("/products");
     }
 
-    public function edit($id)
+    public function edit ($id)
     {
         $productModel = new Product();
         $product = $productModel->first($id);
@@ -36,14 +34,14 @@ class ProductController extends DB
         return ["product" => $product, "categories" => $categories];
     }
 
-    public function update($request, $id)
+    public function update ($request, $id)
     {
         $productModel = new Product();
         $productModel->update($request, $id);
         redirect("/products");
     }
 
-    public function destroy($id)
+    public function destroy ($id)
     {
         $productModel = new Product();
         $productModel->softDelete($id);

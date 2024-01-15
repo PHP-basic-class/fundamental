@@ -60,7 +60,7 @@ class Model
         $sql = "UPDATE {$this->table} SET `deleted_at` = NOW() WHERE `id` = ?";
         $this->query($sql, [$id]);
     }
-
+    
 
 
     public function recoverDelete($id)
