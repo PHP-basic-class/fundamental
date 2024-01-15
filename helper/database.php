@@ -9,7 +9,7 @@ class DB
         $dbname = "first";
         $user = "root";
         // $password = "admin";
-        $password = 'admin';
+        $password = '';
         $port = 3306;
         try {
             $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $user, $password);
