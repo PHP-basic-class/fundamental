@@ -23,6 +23,10 @@ $categories = $controller->create();
                 <input required type="text" name="name" class="w-full border-2 border-blue-600 px-5 py-2">
             </div>
             <div class="my-3">
+                <label for="image">Image</label>
+                <input required type="file" name="image" class="w-full border-2 border-blue-600 px-5 py-2">
+            </div>
+            <div class="my-3">
                 <label for="price">Price</label>
                 <input required type="number" name="price" class="w-full border-2 border-blue-600 px-5 py-2">
             </div>

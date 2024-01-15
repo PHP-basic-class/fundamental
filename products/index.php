@@ -1,5 +1,6 @@
 <?php
 require_once "../controller/ProductController.php";
+
 $controller = new ProductController();
 $products = $controller->index();
 ?>
@@ -39,6 +40,9 @@ $products = $controller->index();
                         Product Stock
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Categories
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Actions
                     </th>
                 </tr>
@@ -52,12 +56,14 @@ $products = $controller->index();
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <?php echo $product->name; ?>
                         </td>
-
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <?php echo $product->price ?>
                         </td>
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <?php echo $product->stock ?>
+                        </td>
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <?php echo $product->category_name ?>
                         </td>
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <a class="px-5 py-2 rounded-md bg-blue-600 text-white" href="/products/edit.php?id=<?php echo $product->id; ?>">edit</a>

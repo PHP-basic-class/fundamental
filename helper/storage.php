@@ -1,14 +1,19 @@
-<?php
+<?php 
 
 class Storage
 {
-    protected static $dir = '../storage/';
-
+    protected static $directory = "../storage/";
     public static function upload($file)
     {
-        $saved_path = static::$dir . $file['name'];
-        $tmp_path = $file['tmp_name'];
-        move_uploaded_file($tmp_path, $saved_path);
-        return $saved_path;
+        $fileName = self::$directory . basename($file["name"]);
+        $tmp_path = $file["tmp_name"];
+        move_uploaded_file($tmp_path, $fileName);
+        return "http://localhost:8000/storage/" . basename($file["name"]);
     }
+
+    public static function remove($filePath) 
+    {
+        $fileName = basename($filePath);
+        unlink(self::$directory . $fileName);
+    } 
 }

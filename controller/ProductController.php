@@ -9,8 +9,18 @@ class ProductController extends DB
 {
     public function index()
     {
-        $products = new Product();
-        return $products->all();
+        $productModel = new Product();
+        $products = $productModel->all();
+        $categoryModal = new Category();
+        $categories = $categoryModal->all();
+        foreach ($categories as $category) {
+            for ($i = 0; $i < count($products); $i++) {
+                if ($products[$i]->category_id == $category->id) {
+                    $products[$i]->category_name = $category->name;
+                }
+            }
+        }
+        return $products;
     }
 
     public function create()

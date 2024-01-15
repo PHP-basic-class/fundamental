@@ -1,5 +1,4 @@
 <?php
-
 class DB
 {
     public static $pdo;
@@ -12,6 +11,7 @@ class DB
         $password = '';
         $port = 3306;
         try {
+            $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $user, $password);
             $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $user, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$pdo = $pdo;
