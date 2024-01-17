@@ -5,7 +5,7 @@ class DB
     public static $pdo;
     public static function connect()
     {
-        $host = "localhost";
+        $host = "127.0.0.1";
         $dbname = "first";
         $user = "root";
         $password = "admin";
