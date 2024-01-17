@@ -16,7 +16,7 @@ $categories = $controller->index();
     <div class="flex justify-between my-5">
         <h1>Product Table</h1>
         <div class="mr-10">
-            <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="../products/create.php">ADD +</a>
+            <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="../categories/create.php">ADD +</a>
         </div>
     </div>
     <div class="relative overflow-x-auto my-5">
