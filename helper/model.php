@@ -1,6 +1,6 @@
 <?php
 require_once "database.php";
-class Model 
+class Model
 {
     protected $table;
     function __construct()
@@ -17,7 +17,20 @@ class Model
 
     public function all()
     {
-        $sql = "SELECT * FROM {$this->table}";
+        $columnsQuery = "EXPLAIN {$this->table}";
+        $result = $this->query($columnsQuery);
+        $deletedAtColumnExists = false;
+        foreach ($result as $row) {
+            if ($row['Field'] === 'deleted_at') {
+                $deletedAtColumnExists = true;
+                break;
+            }
+        }
+        if ($deletedAtColumnExists) {
+            $sql = "SELECT * FROM {$this->table} WHERE `deleted_at` IS NULL";
+        } else {
+            $sql = "SELECT * FROM {$this->table}";
+        }
         $result = $this->query($sql);
         return $result->fetchAll(PDO::FETCH_OBJ);
     }
@@ -41,8 +54,7 @@ class Model
     public function update($data, $column)
     {
         $clause = "";
-        foreach($data as $key => $value)
-        {
+        foreach ($data as $key => $value) {
             $clause .= "$key = :$key, ";
         }
         $sql = "UPDATE {$this->table} SET $clause `updated_at` = NOW() WHERE `id` = :id";
@@ -54,20 +66,24 @@ class Model
     {
         $sql = "DELETE FROM {$this->table} WHERE `id` = ?";
         $this->query($sql, [$column]);
-    } 
-
-    public function softDelete()
-    {
-
     }
 
-    public function recoverDelete()
+    public function softDelete($id)
     {
-
+        $sql = "UPDATE {$this->table} SET `deleted_at` = NOW() WHERE `id` = ?";
+        $this->query($sql, [$id]);
+    }
+    
+    public function recoverDelete($id)
+    {
+        $sql = "UPDATE {$this->table} SET deleted_at = NULL  WHERE id = :id";
+        $this->query($sql, $id);
     }
 
     public function allWithSoftDelete()
     {
-
+        $sql = "SELECT * FROM {$this->table} WHERE deleted_at IS NOT NULL";
+        $stmt = $this->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }

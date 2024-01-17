@@ -1,5 +1,6 @@
 <?php 
 require_once "../helper/database.php";
+require_once "../helper/storage.php";
 require_once "../helper/redirect.php";
 require_once "../model/Product.php";
 require_once "../model/Category.php";
@@ -9,7 +10,9 @@ class ProductController extends DB
     public function index ()
     {
         $products = new Product();
-        return $products->all();
+        $categories = new Category();
+
+        return ["products" => $products->all(), "categories" => $categories->all()];
     }
 
     public function create () 
@@ -21,6 +24,7 @@ class ProductController extends DB
     public function store ($request)
     {
         $productModel = new Product();
+        $request["image"] = Storage::upload($request["image"]);
         $productModel->create($request);
         redirect("/products");
     }
@@ -44,7 +48,7 @@ class ProductController extends DB
     public function destroy ($id)
     {
         $productModel = new Product();
-        $product = $productModel->delete($id);
+        $productModel->softDelete($id);
         redirect("/products");
     }
 }
