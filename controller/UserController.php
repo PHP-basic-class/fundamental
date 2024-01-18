@@ -9,6 +9,20 @@ class UserController {
         $users = new User();
         return $users->all();
     }
+
+    public function edit ($id)
+    {
+        $userModel = new User();
+        $user = $userModel->first($id);
+        return ["users" => $user];
+    }
+
+    public function update ($request, $id)
+    {
+        $userModel = new User();
+        $userModel->update($request, $id);
+        redirect("/users");
+    }
 }
 
 ?>
