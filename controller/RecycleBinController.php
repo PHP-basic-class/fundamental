@@ -30,3 +30,6 @@ class RecycleBinController extends DB
         redirect('/products');
     }
 }
+
+
+
