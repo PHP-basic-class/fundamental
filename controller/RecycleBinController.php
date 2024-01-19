@@ -27,7 +27,12 @@ class RecycleBinController extends DB
     {
         $productModal = new Product();
         $productModal->recoverDelete($id);
-        redirect('/products');
+        redirect('/recycle_bin/products.php');
+    }
+    public function permentallyDelete($id){
+        $productModal = new Product();
+        $productModal->perDelete($id);
+        redirect('/recycle_bin/products.php');
     }
 }
 

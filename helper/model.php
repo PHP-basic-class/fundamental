@@ -86,4 +86,9 @@ class Model
         $stmt = $this->query($sql);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function perDelete($id){
+        $sql = "DELETE FROM {$this->table} WHERE id= :id";
+        $this->query($sql, $id);
+    }
 }
