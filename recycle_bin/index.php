@@ -16,7 +16,7 @@ $products = $controller->products();
 
 <body>
     <div class="flex justify-between my-5">
-        <h1>Product_recycle_bin Table</h1>
+        <h1>Product Recycle Bin</h1>
         <div class="mr-10">
             <a class="bg-black rounded-md shadow-xl py-2 px-5 text-white" href="../products/">Back</a>
         </div>
@@ -25,6 +25,9 @@ $products = $controller->products();
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
+                     <th scope="col" class="px-6 py-3">
+                        Image
+                     </th>
                     <th scope="col" class="px-6 py-3">
                         Product Name
                     </th>
@@ -48,6 +51,9 @@ $products = $controller->products();
             <tbody>
                 <?php foreach ($products as $product) : ?>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <img src="<?php echo $product->image; ?>" class="w-[70px] h-[70px] object-cover" alt="product-image">
+                        </td>
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <?php echo $product->name; ?>
                         </td>

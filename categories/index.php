@@ -16,6 +16,7 @@ $categories = $controller->index();
     <div class="flex justify-between my-5">
         <h1>Category Table</h1>
         <div class="mr-10">
+            <a class="bg-sky-400 rounded-md shadow-xl py-2 px-5 text-white" href="../index.php">Main</a>
             <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="../categories/create.php">ADD +</a>
         </div>
     </div>
