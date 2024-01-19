@@ -8,7 +8,7 @@ $users = $controller->index();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Index Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -23,7 +23,7 @@ $users = $controller->index();
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        User_Name
+                        Username
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Full Name
@@ -34,10 +34,6 @@ $users = $controller->index();
                     <th scope="col" class="px-6 py-3">
                         Role
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        Created_At
-                    </th>
-
                     <th scope="col" class="px-6 py-3">
                         Actions
                     </th>
@@ -57,9 +53,6 @@ $users = $controller->index();
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <?php echo $user->role; ?>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?php echo $user->created_at; ?>
                     </td>
 
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">

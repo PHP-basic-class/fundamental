@@ -10,6 +10,13 @@ class UserController {
         return $users->all();
     }
 
+    public function store ($request)
+    {
+        $userModel = new User();
+        $userModel->create($request);
+        redirect("/users/create.php");
+    }
+
     public function edit ($id)
     {
         $userModel = new User();
@@ -21,6 +28,13 @@ class UserController {
     {
         $userModel = new User();
         $userModel->update($request, $id);
+        redirect("/users");
+    }
+
+    public function destroy ($id)
+    {
+        $userModel = new User();
+        $user = $userModel->delete($id);
         redirect("/users");
     }
 }
