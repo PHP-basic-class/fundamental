@@ -31,7 +31,7 @@
                 <input required type="password" name="password" class="w-full border-2 border-blue-600 px-5 py-2">
             </div>
             <div class="my-3">
-                <label for="role">Role</label>
+                <label for="role">Choose Role</label>
                 <select name="role" class="w-full border-2 border-blue-600 px-5 py-2" required>
                     <option selected></option>         
                     <option value="users">
