@@ -1,18 +1,18 @@
-<?php 
+<?php
 
 require_once __DIR__ . "/../helper/migration.php";
 
 Migration::create_table(
-    "CREATE TABLE `products` (
-        `id` INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-        `name` VARCHAR(255) NOT NULL, 
-        `image` VARCHAR(255) NOT NULL, 
-        `description` VARCHAR(255) NOT NULL,
-        `price` INT UNSIGNED NOT NULL, 
-        `stock` INT UNSIGNED NOT NULL,
-        `category_id` INT UNSIGNED NOT NULL,
-        `created_at` TIMESTAMP NOT NULL, 
-        `updated_at` TIMESTAMP NOT NULL,
-        `deleted_at` TIMESTAMP
+    "create table products (
+        id int unsigned primary key not null auto_increment, 
+        name varchar (100) not null, 
+        image varchar (255) not null,
+        description text not null, 
+        price int unsigned not null,  
+        stock int unsigned not null, 
+        category_id int unsigned not null,  
+        created_at datetime not null,
+        updated_at datetime not null, 
+        deleted_at datetime
     );"
 );

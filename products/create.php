@@ -47,10 +47,6 @@ $categories = $controller->create();
                     <?php endforeach; ?>
                 </select>
             </div>
-            <div class="my-3">
-                <label for="image">Image</label>
-                <input type="file" name="image" class="w-full border-2 border-blue-600 px-5 py-2" required>
-            </div>
             <button class="w-full py-2 bg-blue-600 text-white my-3 rounded-md">Save</button>
             <div class="my-2 py-2 w-full bg-gray-800 text-white rounded-md text-center">
                 <a href="index.php" class="w-full">Back</a>

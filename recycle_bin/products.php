@@ -16,10 +16,9 @@ $products = $controller->products();
 
 <body>
     <div class="flex justify-between my-5">
-        <h1>Product Table</h1>
+        <h1>Recycle Bin</h1>
         <div class="mr-10">
             <a class="bg-black rounded-md shadow-xl py-2 px-5 text-white" href="../products/">Back</a>
-            <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="products/create.php">ADD +</a>
         </div>
     </div>
     <div class="relative overflow-x-auto my-5">
@@ -66,7 +65,7 @@ $products = $controller->products();
                         </td>
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <a class="px-5 py-2 rounded-md bg-blue-600 text-white" href="/recycle_bin/restore_product.php?id=<?php echo $product->id; ?>">restore</a>
-                            <a class="px-5 py-2 rounded-md bg-red-600 text-white" href="/products/destroy.php?id=<?php echo $product->id; ?>">delete</a>
+                            <a class="px-5 py-2 rounded-md bg-red-600 text-white" href="/recycle_bin/delete_product.php?id=<?php echo $product->id; ?>">delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
