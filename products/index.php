@@ -16,7 +16,7 @@ $categories = $controller->index()["categories"];
 </head>
 <body>
     <div class="flex justify-between my-5">
-        <h1>Product Table</h1>
+        <h1 class=" text-xl font-bold">Product Table</h1>
         <div class="mr-10">
             <a class="bg-black rounded-md shadow-xl py-2 px-5 text-white" href="../recycle_bin/products.php">Recycle Bin</a>
             <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="../products/create.php">ADD +</a>
