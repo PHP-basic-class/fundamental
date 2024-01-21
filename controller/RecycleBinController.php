@@ -4,6 +4,7 @@ require_once "../helper/database.php";
 require_once '../model/Product.php';
 require_once '../model/Category.php';
 require_once '../helper/redirect.php';
+require_once '../helper/storage.php';
 
 class RecycleBinController extends DB
 {
@@ -29,7 +30,13 @@ class RecycleBinController extends DB
         $productModal->recoverDelete($id);
         redirect('/products');
     }
+
+    public function permanentDelete($id)
+    {
+        $productModal = new Product();
+        $filePath = $productModal->first($id)->image;
+        Storage::remove($filePath);
+        $productModal->delete($id);
+        redirect('/recycle_bin/products.php');
+    }
 }
-
-
-
