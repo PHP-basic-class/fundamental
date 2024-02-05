@@ -1,9 +1,6 @@
 <?php 
-require_once "../helper/database.php";
-require_once "../helper/storage.php";
-require_once "../helper/redirect.php";
-require_once "../model/Product.php";
-require_once "../model/Category.php";
+require_once __DIR__ . "/../../vendor/autoload.php";
+require_once __DIR__ . "/../../helper/redirect.php";
 
 class ProductController extends DB
 {
@@ -12,13 +9,13 @@ class ProductController extends DB
         $products = new Product();
         $categories = new Category();
 
-        return ["products" => $products->all(), "categories" => $categories->all()];
+        View::render('products/index', ["products" => $products->all(), "categories" => $categories->all()]);
     }
 
     public function create () 
     {
         $categoryModel = new Category();
-        return $categoryModel->all();
+        View::render('products/create', $categoryModel->all());
     }
 
     public function store ($request)

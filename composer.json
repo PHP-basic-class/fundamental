@@ -1,0 +1,15 @@
+{
+    "name": "kyawyelin/fundamental",
+    "authors": [
+        {
+            "name": "kyawyelin",
+            "email": "kyawyelin022@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap": [
+            "app/", "helper/"
+        ]
+    }
+}

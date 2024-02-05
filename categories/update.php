@@ -1,6 +1,0 @@
-<?php 
-require_once "../controller/CategoryController.php";
-
-$controller = new CategoryController();
-$controller->update($_POST, $_GET["id"]);
-

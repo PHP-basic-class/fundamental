@@ -1,9 +1,3 @@
-<?php 
-require_once "../controller/CategoryController.php";
-$controller = new CategoryController();
-$categories = $controller->index();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +10,7 @@ $categories = $controller->index();
     <div class="flex justify-between my-5">
         <h1>Category Table</h1>
         <div class="mr-10">
-            <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="../categories/create.php">ADD +</a>
+            <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="/categories/create">ADD +</a>
         </div>
     </div>
     <div class="relative overflow-x-auto my-5">
@@ -33,15 +27,15 @@ $categories = $controller->index();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($categories as $category) : ?>
+                <?php foreach ($data as $category) : ?>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <?php echo $category->name; ?>
                     </td>
 
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <a class="px-5 py-2 rounded-md bg-blue-600 text-white" href="/categories/edit.php?id=<?php echo $category->id;?>">edit</a>
-                        <a class="px-5 py-2 rounded-md bg-red-600 text-white" href="/categories/destroy.php?id=<?php echo $category->id;?>">delete</a>
+                        <a class="px-5 py-2 rounded-md bg-blue-600 text-white" href="/categories/edit?id=<?php echo $category->id;?>">edit</a>
+                        <a class="px-5 py-2 rounded-md bg-red-600 text-white" href="/categories/destroy?id=<?php echo $category->id;?>">delete</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

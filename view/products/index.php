@@ -1,9 +1,6 @@
 <?php 
-require_once "../controller/ProductController.php";
-
-$controller = new ProductController();
-$products = $controller->index()["products"];
-$categories = $controller->index()["categories"];
+$products = $data["products"];
+$categories = $data["categories"];
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +16,7 @@ $categories = $controller->index()["categories"];
         <h1>Product Table</h1>
         <div class="mr-10">
             <a class="bg-black rounded-md shadow-xl py-2 px-5 text-white" href="../recycle_bin/products.php">Recycle Bin</a>
-            <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="../products/create.php">ADD +</a>
+            <a class="bg-green-700 rounded-md shadow-xl py-2 px-5 text-white" href="/products/create">ADD +</a>
         </div>
     </div>
     <div class="relative overflow-x-auto my-5">

@@ -2,7 +2,7 @@
 
 class Storage
 {
-    protected static $directory = "../storage/";
+    protected static $directory = __DIR__ . "/../storage/";
     public static function upload($file)
     {
         $fileName = self::$directory . basename($file["name"]);
